@@ -10,6 +10,8 @@ class IngredientEntry extends React.Component {
         }
 
         this.addIngredient = this.addIngredient.bind(this)
+        this.deleteIngredient = this.deleteIngredient.bind(this)
+        this.handleClick = this.handleClick.bind(this)
     }
     
     addIngredient(e) {
@@ -33,6 +35,16 @@ class IngredientEntry extends React.Component {
         e.preventDefault()
     }
 
+    deleteIngredient(key) {
+        const remainingIngs = this.state.ingredients.filter(ingredient => ingredient.key !== key)
+        this.setState({ ingredients: remainingIngs })
+    }
+
+    handleClick(e) {
+        e.preventDefault()
+        console.log(this.state.ingredients)
+    }
+
     render() {
         return (
             <div>
@@ -40,7 +52,7 @@ class IngredientEntry extends React.Component {
                     <input ref={(i) => this.ingredientInput = i} className="ingredient-entry-box mr-3" placeholder="Enter ingredients"/>
                     <button type="submit" className="btn btn-success px-3">Add</button>
                 </form>
-                <IngredientList ingList={this.state.ingredients}/>
+                <IngredientList ingList={this.state.ingredients} delete={this.deleteIngredient}/>
             </div>
         )
     }
