@@ -4,6 +4,7 @@ import "./IngredientEntry.css"
 
 const apiURL = "http://localhost:8888/"
 
+
 class IngredientEntry extends React.Component {
     constructor() {
         super()
@@ -53,10 +54,13 @@ class IngredientEntry extends React.Component {
         }
 
         apiString += this.state.ingredients[this.state.ingredients.length - 1].ingredient
+        const response = fetch(apiURL + "recipe/searchRecipe/" + apiString + "/7")
+        .then(response => response.text())
+        .then(text => text ? JSON.parse(text):{})
+        .then(data => console.log(data))
+        .catch(Error => { console.log(Error) })
 
-        fetch(apiURL + "recipe/searchRecipe/" + apiString + "/7").then(
-            data => { console.log(data.json()) }
-        ).catch(Error => { console.log(Error) })
+        fetch(apiURL + "recipe/recipeInfo/" + response.)
     }
 
     render() {
