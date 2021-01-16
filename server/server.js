@@ -2,11 +2,13 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 
-const PORT = 3000;
+const PORT = 8888;
 
-var router = require("./routes/recipe.js");
+var recipeRouter = require("./routes/recipe.js");
+var ingRouter = require("./routes/ingredients.js");
 
-app.use("/api", router);
+app.use("/recipe", recipeRouter);
+app.use("/ingredients", ingRouter);
 app.use(cors());
 
 app.get("/", (req, res) => {
