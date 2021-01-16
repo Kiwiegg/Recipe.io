@@ -1,12 +1,15 @@
 import React from "react"
 import IngredientList from "../IngredientList/IngredientList"
 import "./IngredientEntry.css"
- 
+
+const apiURL = "http://localhost:8888/"
+
 class IngredientEntry extends React.Component {
     constructor() {
         super()
         this.state = {
-            ingredients: []
+            ingredients: [],
+            apiString: ""
         }
 
         this.addIngredient = this.addIngredient.bind(this)
@@ -24,7 +27,8 @@ class IngredientEntry extends React.Component {
 
             this.setState(prevState => {
                 return {
-                    ingredients: prevState.ingredients.concat(newIngredient)
+                    ingredients: prevState.ingredients.concat(newIngredient),
+                    apiString: prevState.apiString
                 }
             })
 
@@ -36,11 +40,12 @@ class IngredientEntry extends React.Component {
 
     deleteIngredient(key) {
         const remainingIngs = this.state.ingredients.filter(ingredient => ingredient.key !== key)
-        this.setState({ ingredients: remainingIngs })
+        this.setState(prevState => {return {ingredients: remainingIngs, apiString: prevState.apiString}})
     }
 
     handleClick(e) {
         e.preventDefault()
+        if (this.state.ingredients.length === 0) {return;}
         let apiString = ""
 
         for (let i = 0; i < this.state.ingredients.length - 1; i++) {
@@ -49,6 +54,9 @@ class IngredientEntry extends React.Component {
 
         apiString += this.state.ingredients[this.state.ingredients.length - 1].ingredient
 
+        fetch(apiURL + "recipe/searchRecipe/" + apiString + "/7").then(
+            data => { console.log(data) }
+        ).catch(Error => { console.log(Error) })
     }
 
     render() {
