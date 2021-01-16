@@ -2,7 +2,7 @@ import React from "react"
 
 function App() {
   return (
-    <div>
+    <div className="vh-100">
       <h1>Hello govind</h1>
     </div>
   )
