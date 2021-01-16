@@ -1,0 +1,13 @@
+.ingredient {
+    display: inline-block;
+    color: white;
+}
+
+.ingredient-wrapper {
+    background-color: rgb(146, 146, 146);
+    border-style: transparent;
+    border-radius: 7px;
+    border-width: 2px;
+    padding: 5px 5px;
+}
+
