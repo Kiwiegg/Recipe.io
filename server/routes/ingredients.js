@@ -15,7 +15,7 @@ router.get("/autocomplete/:query", (req, res) => {
     var query = req.params.req;
 
     if (!query) {
-        res.statusCode(400).send("Bad Request");
+        res.status(400).send("Bad Request");
     } 
 
     var params = {

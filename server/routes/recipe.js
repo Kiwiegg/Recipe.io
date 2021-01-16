@@ -16,7 +16,7 @@ router.get("/searchRecipe/:ing/:num", (req, res) => {
     var number = req.params.num || 10;
 
     if (!ingredients) {
-        res.statusCode(400).send("Bad Request");
+        res.status(400).send("Bad Request");
     }
 
     var params = {
@@ -42,7 +42,7 @@ router.get('/recipeInfo/:id', (req,res) => {
     var id = req.params.id;
     
     if (!id) {
-        res.statusCode(400).send("Bad Request");
+        res.status(400).send("Bad Request");
     } 
 
     var params = {
