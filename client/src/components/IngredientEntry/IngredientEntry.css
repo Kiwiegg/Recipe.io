@@ -1,4 +1,4 @@
 .ingredient-entry-box {
-    width: 65%;
+    min-width: 75%;
     height: 38px;
 }
