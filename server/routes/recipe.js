@@ -21,7 +21,7 @@ router.get("/searchRecipe/:ing/:num", (req, res) => {
 
     var params = {
         apiKey: APIkey, 
-        ingredients: ingredients.split(',').join(',+'), 
+        ingredients: ingredients,
         number: number,
         ranking: 2
     };
