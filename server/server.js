@@ -5,8 +5,10 @@ const cors = require("cors");
 const PORT = 8888;
 
 var recipeRouter = require("./routes/recipe.js");
+var ingRouter = require("./routes/ingredients.js");
 
 app.use("/recipe", recipeRouter);
+app.use("/ingredients", ingRouter);
 app.use(cors());
 
 app.get("/", (req, res) => {
