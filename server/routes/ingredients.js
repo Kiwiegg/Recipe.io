@@ -12,7 +12,7 @@ router.get("/", (req, res) => {
 });
 
 router.get("/autocomplete/:query", (req, res) => {
-    var query = req.params.req;
+    var query = req.params.query;
 
     if (!query) {
         res.status(400).send("Bad Request");
