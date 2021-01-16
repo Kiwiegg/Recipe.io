@@ -55,7 +55,7 @@ class IngredientEntry extends React.Component {
         apiString += this.state.ingredients[this.state.ingredients.length - 1].ingredient
 
         fetch(apiURL + "recipe/searchRecipe/" + apiString + "/7").then(
-            data => { console.log(data) }
+            data => { console.log(data.json()) }
         ).catch(Error => { console.log(Error) })
     }
 

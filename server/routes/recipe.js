@@ -32,7 +32,7 @@ router.get("/searchRecipe/:ing/:num", (req, res) => {
     }
     console.log(options);
     axios.request(options).then(data => {
-        res.send(data.data);
+        res.send(data.body);
     }).catch(err => {
         console.log(err);
     })
