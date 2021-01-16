@@ -1,6 +1,7 @@
 import React from "react"
 import Header from "../Header/Header"
 import IngredientEntry from "../IngredientEntry/IngredientEntry"
+import IngredientList from "../IngredientEntry/IngredientEntry"
 
 import "./App.css"
 

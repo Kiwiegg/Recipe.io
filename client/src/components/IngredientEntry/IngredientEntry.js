@@ -31,7 +31,6 @@ class IngredientEntry extends React.Component {
             this.ingredientInput.value = ""
         }
         
-        console.log(this.state.ingredients)
         e.preventDefault()
     }
 
@@ -42,7 +41,14 @@ class IngredientEntry extends React.Component {
 
     handleClick(e) {
         e.preventDefault()
-        console.log(this.state.ingredients)
+        let apiString = ""
+
+        for (let i = 0; i < this.state.ingredients.length - 1; i++) {
+            apiString += this.state.ingredients[i].ingredient + ",+"
+        }
+
+        apiString += this.state.ingredients[this.state.ingredients.length - 1].ingredient
+
     }
 
     render() {
@@ -53,6 +59,7 @@ class IngredientEntry extends React.Component {
                     <button type="submit" className="btn btn-success px-3">Add</button>
                 </form>
                 <IngredientList ingList={this.state.ingredients} delete={this.deleteIngredient}/>
+                <button onClick={this.handleClick} type="submit" className="btn btn-lg btn-warning mt-5">Find Recipes</button>
             </div>
         )
     }
