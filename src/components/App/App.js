@@ -1,9 +1,12 @@
 import React from "react"
+import IngredientEntry from "../IngredientEntry/IngredientEntry"
+
+import "./App.css"
 
 function App() {
   return (
-    <div className="vh-100">
-      <h1>Hello govind</h1>
+    <div className="app-wrapper min-vh-100 text-center">
+      <IngredientEntry/>
     </div>
   )
 }
