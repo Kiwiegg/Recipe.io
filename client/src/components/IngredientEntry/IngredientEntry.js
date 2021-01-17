@@ -11,12 +11,15 @@ class IngredientEntry extends React.Component {
         super()
         this.state = {
             ingredients: [],
+            acWords: [],
             apiString: ""
         }
 
         this.addIngredient = this.addIngredient.bind(this)
         this.deleteIngredient = this.deleteIngredient.bind(this)
         this.handleClick = this.handleClick.bind(this)
+        this.handleChange = this.handleChange.bind(this)
+        this.autocompleteHandler = this.autocompleteHandler.bind(this)
     }
     
     addIngredient(e) {
@@ -30,6 +33,7 @@ class IngredientEntry extends React.Component {
             this.setState(prevState => {
                 return {
                     ingredients: prevState.ingredients.concat(newIngredient),
+                    acWords: prevState.acWords,
                     apiString: prevState.apiString
                 }
             })
@@ -42,7 +46,7 @@ class IngredientEntry extends React.Component {
 
     deleteIngredient(key) {
         const remainingIngs = this.state.ingredients.filter(ingredient => ingredient.key !== key)
-        this.setState(prevState => {return {ingredients: remainingIngs, apiString: prevState.apiString}})
+        this.setState(prevState => {return {ingredients: remainingIngs, acWords: prevState.acWords, apiString: prevState.apiString}})
     }
 
     handleClick(e) {
@@ -64,10 +68,40 @@ class IngredientEntry extends React.Component {
         fetch(apiURL + "recipe/recipeInfo/" + response)
     }
 
+    handleChange(e) {
+        e.preventDefault()
+        const autocompleteQuery = apiURL + "ingredients/autocomplete/" + this.ingredientInput.value
+
+        const data = fetch(autocompleteQuery)
+        .then(response => response.json())
+        .then(data => this.setState(prevState => {
+            return {
+                ingredients: prevState.ingredients,
+                acWords: data,
+                apiString: prevState.apiString
+            }
+        }))
+    }
+
+    autocompleteHandler(e) {
+        e.preventDefault()
+        this.ingredientInput.value = e.target.name
+        this.setState(prevState => {
+            return {
+                ingredients: prevState.ingredients,
+                acWords: [],
+                apiString: prevState.apiString
+            }
+        })
+    }
+
     render() {
+        const autocompleteButtons = this.state.acWords.map(acWord =>
+            <button name={acWord} onClick={this.autocompleteHandler} type="button" className="btn btn-lg btn-light mt-5 mr-5">{acWord}</button>
+        )
+
         return (
             <div>
-<<<<<<< HEAD
                 <div>
                     <form onSubmit={this.addIngredient}>
                         <input onChange={this.handleChange} ref={(i) => this.ingredientInput = i} className="ingredient-entry-box mr-3" placeholder="Enter ingredients"/>
@@ -85,14 +119,6 @@ class IngredientEntry extends React.Component {
                         <RecipeTile title="Test recipe"/>
                     </div>
                 </div>
-=======
-                <form onSubmit={this.addIngredient}>
-                    <input ref={(i) => this.ingredientInput = i} className="ingredient-entry-box mr-3" placeholder="Enter ingredients"/>
-                    <button type="submit" className="btn btn-success px-3">Add</button>
-                </form>
-                <IngredientList ingList={this.state.ingredients} delete={this.deleteIngredient}/>
-                <button onClick={this.handleClick} type="submit" className="btn btn-lg btn-warning mt-5">Find Recipes</button>
->>>>>>> e295147cc8551177dfce0a03d2c246215900bd52
             </div>
         )
     }
