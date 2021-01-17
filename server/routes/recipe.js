@@ -60,6 +60,27 @@ router.get('/recipeInfo/:id', (req,res) => {
     }).catch(err => {
         console.log(err);
     })
-})
+});
+
+router.get("/summary/:id", (req, res) => {
+    var id = req.params.id;
+    
+    if (!id) {
+        res.status(400).send("Bad Request");
+    } 
+
+    var options = {
+        method: 'GET',
+        url: `https://api.spoonacular.com/recipes/${id}/summary?apiKey=` + APIkey
+    }
+
+    console.log(options);
+    
+    axios.request(options).then(data => {
+        res.send(data.data);
+    }).catch(err => {
+        console.log(err);
+    })
+});
 
 module.exports = router;

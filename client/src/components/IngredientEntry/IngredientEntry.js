@@ -60,7 +60,7 @@ class IngredientEntry extends React.Component {
         .then(data => console.log(data))
         .catch(Error => { console.log(Error) })
 
-        fetch(apiURL + "recipe/recipeInfo/" + response.)
+        fetch(apiURL + "recipe/recipeInfo/" + response)
     }
 
     render() {
