@@ -26,7 +26,7 @@ Again run the commands
 
 ### `npm install` `npm start`
 
-This installs all required dependencies and starts up the frontend. The application is now up and running.
+This installs all required dependencies and starts up the frontend. The frontend is running on localhost:3000. The application is now up and running.
 
 ## How To Use The Application
 
