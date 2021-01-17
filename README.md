@@ -38,6 +38,6 @@ First, input an ingredient into the large input box in the middle of the screen.
 
 Once you have inputted all the ingredients you want, hit the yellow "Find Recipes" button. You will then see some of the best matching recipes for the ingredients you entered. You can click on these recipes to get more detail on them.
 
-![Recipes found](https://github.com/danwei002/HTN-Project)
+![Recipes found](https://github.com/danwei002/HTN-Project/blob/master/example%203.png)
 
 
