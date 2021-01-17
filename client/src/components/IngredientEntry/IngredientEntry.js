@@ -1,5 +1,6 @@
 import React from "react"
 import IngredientList from "../IngredientList/IngredientList"
+import RecipeTile from "../RecipeTile/RecipeTile"
 import "./IngredientEntry.css"
 
 const apiURL = "http://localhost:8888/"
@@ -96,14 +97,23 @@ class IngredientEntry extends React.Component {
 
         return (
             <div>
-                <form onSubmit={this.addIngredient}>
-                    <input onChange={this.handleChange} ref={(i) => this.ingredientInput = i} className="ingredient-entry-box mr-3" placeholder="Enter ingredients"/>
-                    <button type="submit" className="btn btn-success px-3">Add</button>
-                </form>
-                <IngredientList ingList={this.state.ingredients} delete={this.deleteIngredient}/>
-                <button onClick={this.handleClick} type="submit" className="btn btn-lg btn-warning mt-5">Find Recipes</button>
-                <br/>
-                {autocompleteButtons}
+                <div>
+                    <form onSubmit={this.addIngredient}>
+                        <input onChange={this.handleChange} ref={(i) => this.ingredientInput = i} className="ingredient-entry-box mr-3" placeholder="Enter ingredients"/>
+                        <button type="submit" className="btn btn-success px-3">Add</button>
+                    </form>
+                    <IngredientList ingList={this.state.ingredients} delete={this.deleteIngredient}/>
+                    <button onClick={this.handleClick} type="submit" className="btn btn-lg btn-warning mt-5">Find Recipes</button>
+                    <br/>
+                    {autocompleteButtons}
+                </div>
+                <div className="container-fluid">
+                    <div className="row" style={{marginLeft: "0px", marginRight: "0px"}}>
+                        <RecipeTile title="Test recipe"/>
+                        <RecipeTile title="Test recipe"/>
+                        <RecipeTile title="Test recipe"/>
+                    </div>
+                </div>
             </div>
         )
     }
