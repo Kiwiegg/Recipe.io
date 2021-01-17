@@ -25,7 +25,6 @@ class IngredientEntry extends React.Component {
     
     addIngredient(e) {
         if (this.ingredientInput.value !== "") {
-            console.log(this.ingredientInput.value)
             const newIngredient = {
                 key: Date.now(),
                 ingredient: this.ingredientInput.value
@@ -124,7 +123,7 @@ class IngredientEntry extends React.Component {
             <div>
                 <div>
                     <form onSubmit={this.addIngredient}>
-                        <input onChange={this.handleChange} ref={(i) => this.ingredientInput = i} className="ingredient-entry-box mr-3" placeholder="Enter ingredients"/>
+                        <input onChange={this.handleChange} ref={(i) => this.ingredientInput = i} className="ingredient-entry-box mr-3 pl-3" placeholder="Enter ingredients"/>
                         <button type="submit" className="btn btn-success px-3">Add</button>
                     </form>
                     <IngredientList ingList={this.state.ingredients} delete={this.deleteIngredient}/>
