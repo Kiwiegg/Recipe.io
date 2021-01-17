@@ -122,10 +122,14 @@ class IngredientEntry extends React.Component {
         return (
             <div>
                 <div>
+                    <h5 style={{color: "rgb(255, 51, 5)", fontWeight:"600"}} className="mt-2">
+                        {this.state.ingredients.length !== 0 ? "Click ingredient again to remove it:" : null}
+                    </h5>
                     <form onSubmit={this.addIngredient}>
                         <input onChange={this.handleChange} ref={(i) => this.ingredientInput = i} className="ingredient-entry-box mr-3 pl-3" placeholder="Enter ingredients"/>
                         <button type="submit" className="btn btn-success px-3">Add</button>
                     </form>
+                    
                     <IngredientList ingList={this.state.ingredients} delete={this.deleteIngredient}/>
                     <br/>
                     <br/>
