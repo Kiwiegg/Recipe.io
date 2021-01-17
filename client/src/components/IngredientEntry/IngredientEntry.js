@@ -85,7 +85,7 @@ class IngredientEntry extends React.Component {
         e.preventDefault()
         const autocompleteQuery = apiURL + "ingredients/autocomplete/" + this.ingredientInput.value
 
-        const data = fetch(autocompleteQuery)
+        fetch(autocompleteQuery)
         .then(response => response.json())
         .then(data => this.setState(prevState => {
             return {
