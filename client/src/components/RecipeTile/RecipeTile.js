@@ -13,8 +13,9 @@ class RecipeTile extends React.Component {
 
         this.handleClick = this.handleClick.bind(this)
         this.handleHover = this.handleHover.bind(this)
+        
     }
-
+    
     handleClick() {
         fetch(apiURL + "recipe/recipeInfo/" + this.props.id)
         .then(response => response.json())
@@ -34,7 +35,8 @@ class RecipeTile extends React.Component {
                 isHover: prevState.isHover,
                 recipeData: data
             }
-        }))
+        })).then(() => console.log(this.state.recipeData.nutrition.nutrients[0].amount));
+        
     }
 
     setOverlay() {
@@ -48,10 +50,13 @@ class RecipeTile extends React.Component {
             color: "white"
         }
 
+        
+
         return (
+            
             <div style={styles} className="pt-3">
                 <p>
-                    
+                    Calories: {this.state.recipeData.nutrition.nutrients[0].amount}
                 </p>
             </div>
         )

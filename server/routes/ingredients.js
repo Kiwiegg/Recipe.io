@@ -5,7 +5,7 @@ const axios = require("axios").default;
 
 const qs = require("querystring");
 
-const APIkey = "3876808284d746acb9125fd1d31e3061";
+const APIkey = "418a03e21b5d4cc6aab83f9954ac4ccc";
 
 router.get("/", (req, res) => {
     res.send("api is working");
