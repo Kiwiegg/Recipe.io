@@ -117,7 +117,7 @@ class IngredientEntry extends React.Component {
         )
 
         const recipeTiles = this.state.recipes.map(recipe => 
-            <RecipeTile key={recipe.title} title={recipe.title}/>
+            <RecipeTile key={recipe.title} title={recipe.title} url={recipe.image}/>
         )
 
         return (

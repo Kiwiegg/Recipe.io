@@ -1,4 +1,7 @@
 .app-wrapper {
-    background-color: #121212;
+    background-image: url("../../food\ background.png");
+    background-size: cover;
+    background-origin: center;
+    background-repeat: no-repeat;
     width: 100%;
 }

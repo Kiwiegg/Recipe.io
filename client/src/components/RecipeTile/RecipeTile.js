@@ -7,6 +7,7 @@ function RecipeTile(props) {
             <div role="button" tabIndex={0} className="recipe-tile pt-4 pl-3 pr-3">
                 <h1>{props.title}</h1>
                 <br/>
+                <img src={props.url} className="img-fluid"/>
             </div>
         </div>
     )
