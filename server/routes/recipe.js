@@ -23,7 +23,7 @@ router.get("/searchRecipe/:ing/:num", (req, res) => {
         apiKey: APIkey, 
         ingredients: ingredients,
         number: number,
-        ranking: 2
+        ranking: 1
     };
 
     var options = {
