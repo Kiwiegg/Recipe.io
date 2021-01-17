@@ -68,7 +68,7 @@ class IngredientEntry extends React.Component {
         }
 
         apiString += this.state.ingredients[this.state.ingredients.length - 1].ingredient
-        fetch(apiURL + "recipe/searchRecipe/" + apiString + "/7")
+        fetch(apiURL + "recipe/searchRecipe/" + apiString + "/9")
         .then(response => response.text())
         .then(text => text ? JSON.parse(text):{})
         .then(data => this.setState(prevState => {
@@ -117,7 +117,7 @@ class IngredientEntry extends React.Component {
         )
 
         const recipeTiles = this.state.recipes.map(recipe => 
-            <RecipeTile key={recipe.title} title={recipe.title} url={recipe.image}/>
+            <RecipeTile key={recipe.id} id={recipe.id} title={recipe.title} url={recipe.image}/>
         )
 
         return (
