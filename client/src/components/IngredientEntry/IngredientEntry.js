@@ -68,7 +68,7 @@ class IngredientEntry extends React.Component {
         }
 
         apiString += this.state.ingredients[this.state.ingredients.length - 1].ingredient
-        fetch(apiURL + "recipe/searchRecipe/" + apiString + "/9")
+        fetch(apiURL + "recipe/searchRecipe/" + apiString + "/15")
         .then(response => response.text())
         .then(text => text ? JSON.parse(text):{})
         .then(data => this.setState(prevState => {
@@ -128,6 +128,8 @@ class IngredientEntry extends React.Component {
                         <button type="submit" className="btn btn-success px-3">Add</button>
                     </form>
                     <IngredientList ingList={this.state.ingredients} delete={this.deleteIngredient}/>
+                    <br/>
+                    <br/>
                     <button onClick={this.handleClick} type="submit" className="btn btn-lg btn-warning mt-5">Find Recipes</button>
                     <br/>
                     {autocompleteButtons}
