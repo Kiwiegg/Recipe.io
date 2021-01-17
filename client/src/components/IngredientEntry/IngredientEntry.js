@@ -12,7 +12,8 @@ class IngredientEntry extends React.Component {
         this.state = {
             ingredients: [],
             acWords: [],
-            apiString: ""
+            apiString: "",
+            recipes: []
         }
 
         this.addIngredient = this.addIngredient.bind(this)
@@ -34,7 +35,8 @@ class IngredientEntry extends React.Component {
                 return {
                     ingredients: prevState.ingredients.concat(newIngredient),
                     acWords: prevState.acWords,
-                    apiString: prevState.apiString
+                    apiString: prevState.apiString,
+                    recipes: prevState.recipes
                 }
             })
 
@@ -46,7 +48,14 @@ class IngredientEntry extends React.Component {
 
     deleteIngredient(key) {
         const remainingIngs = this.state.ingredients.filter(ingredient => ingredient.key !== key)
-        this.setState(prevState => {return {ingredients: remainingIngs, acWords: prevState.acWords, apiString: prevState.apiString}})
+        this.setState(prevState => {
+            return {
+                ingredients: remainingIngs, 
+                acWords: prevState.acWords, 
+                apiString: prevState.apiString, 
+                recipes: prevState.recipes
+            }
+        })
     }
 
     handleClick(e) {
@@ -59,13 +68,18 @@ class IngredientEntry extends React.Component {
         }
 
         apiString += this.state.ingredients[this.state.ingredients.length - 1].ingredient
-        const response = fetch(apiURL + "recipe/searchRecipe/" + apiString + "/7")
+        fetch(apiURL + "recipe/searchRecipe/" + apiString + "/7")
         .then(response => response.text())
         .then(text => text ? JSON.parse(text):{})
-        .then(data => console.log(data))
+        .then(data => this.setState(prevState => {
+            return {
+                ingredients: prevState.ingredients,
+                acWords: prevState.acWords,
+                apiString: prevState.apiString,
+                recipes: data
+            }
+        }))
         .catch(Error => { console.log(Error) })
-
-        fetch(apiURL + "recipe/recipeInfo/" + response)
     }
 
     handleChange(e) {
@@ -78,7 +92,8 @@ class IngredientEntry extends React.Component {
             return {
                 ingredients: prevState.ingredients,
                 acWords: data,
-                apiString: prevState.apiString
+                apiString: prevState.apiString,
+                recipes: prevState.recipes
             }
         }))
     }
@@ -90,14 +105,19 @@ class IngredientEntry extends React.Component {
             return {
                 ingredients: prevState.ingredients,
                 acWords: [],
-                apiString: prevState.apiString
+                apiString: prevState.apiString,
+                recipes: prevState.recipes
             }
         })
     }
 
     render() {
         const autocompleteButtons = this.state.acWords.map(acWord =>
-            <button name={acWord} onClick={this.autocompleteHandler} type="button" className="btn btn-lg btn-light mt-5 mr-5">{acWord}</button>
+            <button name={acWord} key={acWord} onClick={this.autocompleteHandler} type="button" className="btn btn-lg btn-light mt-5 mr-5">{acWord}</button>
+        )
+
+        const recipeTiles = this.state.recipes.map(recipe => 
+            <RecipeTile key={recipe.title} title={recipe.title}/>
         )
 
         return (
@@ -114,9 +134,7 @@ class IngredientEntry extends React.Component {
                 </div>
                 <div className="container-fluid">
                     <div className="row" style={{marginLeft: "0px", marginRight: "0px"}}>
-                        <RecipeTile title="Test recipe"/>
-                        <RecipeTile title="Test recipe"/>
-                        <RecipeTile title="Test recipe"/>
+                        {recipeTiles}
                     </div>
                 </div>
             </div>
