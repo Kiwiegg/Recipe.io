@@ -6,11 +6,11 @@ A full-stack web application built using React.js, Node.js, Express.js, and the 
 
 ## Get Started
 
-To start up the application, clone the repository:
+First you will need a Spoonacular API key. Next, clone the repository:
 
 ### `git clone https://github.com/danwei002/HTN-Project`
 
-Open the newly cloned reposity and change to the server directory:
+Open the newly cloned repository and find the ![config.js](https://github.com/danwei002/HTN-Project/blob/master/server/config.js) file in the server directory. In here, update the variable apiKey with your API key. Now navigate back to the main directory and change to the server directory:
 
 ### `cd server`
 
